@@ -1,0 +1,180 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Organigrama Interactivo</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  /* Manager fijo */
+  .manager-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 16px;
+    width: 180px;
+    margin-bottom: 40px;
+  }
+
+  .manager-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .org-name {
+    font-weight: bold;
+    color: #0078d7;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .org-info {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* Carrusel 3D */
+  .carousel-wrapper {
+    perspective: 1000px;
+    width: 300px;
+    height: 220px;
+    position: relative;
+  }
+
+  .carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+  }
+
+  .carousel-card {
+    position: absolute;
+    width: 160px;
+    height: 200px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-origin: 50% 50%;
+  }
+
+  .carousel-card img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  /* Botones de control */
+  .controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .btn {
+    background: #0078d7;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .btn:hover {
+    background: #005fa3;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Manager fijo -->
+  <div class="manager-card">
+    <img src="https://ge.sharepoint.us/:i:/r/sites/CSandCERTLEAP-1A1C/Shared%20Documents/Team%20pictures/DTREJO2025.jpg?csf=1&web=1&e=Ax72pa" alt="Manager">
+    <div class="org-name">Carlos Martínez</div>
+    <div class="org-info">carlos.martinez@empresa.com<br>Gerente de Ingeniería</div>
+  </div>
+
+  <!-- Carrusel 3D -->
+  <div class="carousel-wrapper">
+    <div class="carousel" id="carousel">
+
+      <div class="carousel-card">
+        <img src="https://ge.sharepoint.us/:i:/r/sites/CSandCERTLEAP-1A1C/Shared%20Documents/Team%20pictures/DTREJO2025.jpg?csf=1&web=1&e=Ax72pa">
+        <div class="org-name">Ana López</div>
+        <div class="org-info">ana.lopez@empresa.com<br>Ingeniera</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://ge.sharepoint.us/:i:/r/sites/CSandCERTLEAP-1A1C/Shared%20Documents/Team%20pictures/DTREJO2025.jpg?csf=1&web=1&e=Ax72pa">
+        <div class="org-name">Luis Torres</div>
+        <div class="org-info">luis.torres@empresa.com<br>Software</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://ge.sharepoint.us/:i:/r/sites/CSandCERTLEAP-1A1C/Shared%20Documents/Team%20pictures/DTREJO2025.jpg?csf=1&web=1&e=Ax72pa">
+        <div class="org-name">María Pérez</div>
+        <div class="org-info">maria.perez@empresa.com<br>Certificación</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://ge.sharepoint.us/:i:/r/sites/CSandCERTLEAP-1A1C/Shared%20Documents/Team%20pictures/DTREJO2025.jpg?csf=1&web=1&e=Ax72pa">
+        <div class="org-name">Pedro Ramírez</div>
+        <div class="org-info">pedro.ramirez@empresa.com<br>Diseño</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de control -->
+  <div class="controls">
+    <button class="btn" onclick="rotateCarousel(-1)">◀</button>
+    <button class="btn" onclick="rotateCarousel(1)">▶</button>
+  </div>
+
+<script>
+  const carousel = document.getElementById('carousel');
+  const cards = document.querySelectorAll('.carousel-card');
+  const totalCards = cards.length;
+  const angle = 360 / totalCards;
+  let currentAngle = 0;
+
+  // Posicionar las tarjetas en círculo 3D
+  cards.forEach((card, index) => {
+    const rotateY = angle * index;
+    card.style.transform = `rotateY(${rotateY}deg) translateZ(250px)`;
+  });
+
+  function rotateCarousel(direction) {
+    currentAngle += angle * direction * -1;
+    carousel.style.transform = `translateZ(-250px) rotateY(${currentAngle}deg)`;
+  }
+
+  // 🔄 Rotación automática cada 4 segundos
+  setInterval(() => rotateCarousel(1), 4000);
+</script>
+
+</body>
+</html>
+
+
