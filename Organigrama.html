@@ -51,10 +51,11 @@
 
   /* Carrusel 3D */
   .carousel-wrapper {
-    perspective: 1200px;
-    width: 400px;
-    height: 240px;
+    perspective: 1600px;
+    width: 600px;
+    height: 400px;
     position: relative;
+    margin-top: 60px;
   }
 
   .carousel {
@@ -246,7 +247,7 @@
   const angle = 360 / totalCards;
   let currentAngle = 0;
 
-  const radius = 600; // 👈 aumenta radio para que no se encimen
+  const radius = 800; // 👈 aumenta radio para que no se encimen
 
   // Posicionar las tarjetas en círculo 3D
   cards.forEach((card, index) => {
@@ -256,7 +257,7 @@
 
   function rotateCarousel(direction) {
     currentAngle += angle * direction * -1;
-    carousel.style.transform = `rotateY(${currentAngle}deg)`;
+    carousel.style.transform = `translateY(40px) rotateY(${currentAngle}deg)`;
   }
 
   // 🔄 Rotación automática cada 4 segundos
@@ -265,4 +266,5 @@
 
 </body>
 </html>
+
 
