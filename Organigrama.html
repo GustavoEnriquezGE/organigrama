@@ -55,7 +55,7 @@
     width: 600px;
     height: 400px;
     position: relative;
-    margin-top: 60px;
+    margin-top: 80px;
   }
 
   .carousel {
@@ -64,6 +64,7 @@
     position: absolute;
     transform-style: preserve-3d;
     transition: transform 1s;
+    transform: translateY(40px);
   }
 
   .carousel-card {
@@ -257,7 +258,7 @@
 
   function rotateCarousel(direction) {
     currentAngle += angle * direction * -1;
-    carousel.style.transform = `translateY(40px) rotateY(${currentAngle}deg)`;
+    carousel.style.transform = `rotateY(${currentAngle}deg)`;
   }
 
   // 🔄 Rotación automática cada 4 segundos
@@ -266,5 +267,6 @@
 
 </body>
 </html>
+
 
 
