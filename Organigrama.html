@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -23,7 +23,7 @@
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 16px;
-    width: 260px;
+    width: 180px;
     margin-bottom: 40px;
   }
 
@@ -51,40 +51,39 @@
 
   /* Carrusel 3D */
   .carousel-wrapper {
-    perspective: 1000px;
-    width: 300px;
-    height: 220px;
+    perspective: 1200px;
+    width: 400px;
+    height: 240px;
     position: relative;
   }
 
   .carousel {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
     transform-style: preserve-3d;
-    animation: spin 20s infinite linear;
+    transition: transform 1s;
   }
 
   .carousel-card {
     position: absolute;
-    width: 230px;
-    height: 200px;
+    width: 140px;
+    height: 180px;
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 16px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform-origin: -550px;
   }
 
   .carousel-card img {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   /* Botones de control */
@@ -119,10 +118,12 @@
     <div class="org-info">Diana.Trejo@geaerospace.com<br>Sr Manager - Software Engineering</div>
   </div>
 
+
   <!-- Carrusel 3D -->
   <div class="carousel-wrapper">
     <div class="carousel" id="carousel">
-
+      <!-- 🔗 AQUÍ AGREGASTE TUS 21 TARJETAS -->
+      <!-- Ejemplo de estructura de tarjeta -->
       <div class="carousel-card">
         <img src="https://ge.sharepoint.us/:i:/r/sites/CSandCERTLEAP-1A1C/Shared%20Documents/Team%20pictures/AlexZaragoza.jpeg?csf=1&web=1&e=40o3qC">
         <div class="org-name">Alex Zaragoza</div>
@@ -228,9 +229,7 @@
         <div class="org-name">Sergio Vera Chavarria</div>
         <div class="org-info">Sergio.Vera@geaerospace.com<br>INGENIERO 2</div>
       </div>
-
-
-      
+      <!-- repite hasta 21 miembros -->
     </div>
   </div>
 
@@ -247,15 +246,17 @@
   const angle = 360 / totalCards;
   let currentAngle = 0;
 
+  const radius = 600; // 👈 aumenta radio para que no se encimen
+
   // Posicionar las tarjetas en círculo 3D
   cards.forEach((card, index) => {
     const rotateY = angle * index;
-    card.style.transform = `rotateY(${rotateY}deg) translateZ(250px)`;
+    card.style.transform = `rotateY(${rotateY}deg) translateZ(${radius}px)`;
   });
 
   function rotateCarousel(direction) {
     currentAngle += angle * direction * -1;
-    carousel.style.transform = `translateZ(-250px) rotateY(${currentAngle}deg)`;
+    carousel.style.transform = `rotateY(${currentAngle}deg)`;
   }
 
   // 🔄 Rotación automática cada 4 segundos
@@ -264,13 +265,4 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
